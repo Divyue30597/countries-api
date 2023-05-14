@@ -1,0 +1,26 @@
+.search-and-filter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-and-filter input {
+  padding: 16px;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.19);
+  width: 30%;
+  border-radius: 8px;
+  background: url(../assets/search.svg) no-repeat scroll 16px 16px;
+  padding-left: 42px;
+}
+
+#filter-by-region {
+  padding: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.19);
+  background-color: #fff;
+  border: none;
+  border-radius: 12px;
+}
+
+#filter-by-region option {
+  margin: 0 16px;
+}

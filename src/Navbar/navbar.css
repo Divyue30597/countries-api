@@ -1,0 +1,22 @@
+.navbar {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.19);
+  padding: 24px 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul li {
+  list-style: none;
+}
+
+nav ul li:last-child {
+  cursor: pointer;
+}
+
+header {
+  margin-bottom: 24px;
+}
