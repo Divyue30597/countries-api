@@ -1,0 +1,25 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 48px;
+  column-gap: 48px;
+}
+
+.card {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 12px;
+}
+
+.card-image picture img {
+  height: 192px;
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+.card-body-header {
+  padding-bottom: 12px;
+}

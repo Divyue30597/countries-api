@@ -1,20 +1,28 @@
 import "./searchAndFilter.css";
 
 const regionsArr = [
-  { value: "/", text: "Filter By Region" },
-  { value: "africa", text: "Africa" },
-  { value: "america", text: "America" },
-  { value: "asia", text: "Asia" },
-  { value: "europe", text: "Europe" },
-  { value: "oceania", text: "Oceania" },
+  { value: "all", text: "Filter By Region" },
+  { value: "region/Africa", text: "Africa" },
+  { value: "region/America", text: "America" },
+  { value: "region/Asia", text: "Asia" },
+  { value: "region/Europe", text: "Europe" },
+  { value: "region/Oceania", text: "Oceania" },
 ];
 
-
-export function SearchAndFilter() {
+export function SearchAndFilter({ setRegion, name, setName }) {
   return (
     <section className="container search-and-filter">
-      <input type="text" placeholder="Search for a country..." />
-      <select name="Fiter by Region" id="filter-by-region">
+      <input
+        type="text"
+        placeholder="Search for a country..."
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <select
+        name="Fiter by Region"
+        id="filter-by-region"
+        onChange={(e) => setRegion(e.target.value)}
+      >
         {regionsArr.map((region) => {
           return (
             <option key={region.value} value={region.value}>

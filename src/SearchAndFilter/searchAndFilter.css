@@ -1,6 +1,7 @@
 .search-and-filter {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 48px;
 }
 
 .search-and-filter input {
