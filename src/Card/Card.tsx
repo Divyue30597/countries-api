@@ -1,5 +1,6 @@
 import "./card.css";
 import infoCircle from "../assets/info-circle.svg";
+import { Link } from "react-router-dom";
 
 export function Card({ data }: any) {
   return (
@@ -22,9 +23,14 @@ export function Card({ data }: any) {
               <div className="card-body-header">
                 <h1>{country.name.common}</h1>
                 <p>
-                  <a href="">
+                  <Link
+                    to={`/${country.name.common
+                      .toLowerCase()
+                      .split(" ")
+                      .join("-")}`}
+                  >
                     <img src={infoCircle} alt="Click for more info" />
-                  </a>
+                  </Link>
                 </p>
               </div>
               <div className="card-main-body">

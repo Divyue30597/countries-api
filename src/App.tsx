@@ -1,16 +1,29 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import "./App.css";
 import { Navbar } from "./Navbar/Navbar";
 import { SearchAndFilter } from "./SearchAndFilter/SearchAndFilter";
 import axios from "axios";
 import { Card } from "./Card/Card";
+import { useDebounce } from "./hooks/useDebounce";
+import { Countries } from "./types/types";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { DetailedPage } from "./DetailedPage/DetailedPage";
+import { useContext } from "react";
 
-function App() {
-  const [data, setData] = useState();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
-  const [region, setRegion] = useState("all");
-  const [name, setName] = useState("");
+export const CountryContext = createContext<Countries[]>([]);
+
+function MainApp({
+  setData,
+}: {
+  setData: React.Dispatch<React.SetStateAction<Countries[]>>;
+}) {
+  const data = useContext(CountryContext);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>();
+  const [region, setRegion] = useState<string>("all");
+  const [name, setName] = useState<string>("");
+
+  const debouncedValue = useDebounce(name, 1000);
 
   async function getAllCountries(region: string, name: string) {
     await axios
@@ -30,6 +43,8 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+
+    return data;
   }
 
   useEffect(() => {
@@ -37,19 +52,42 @@ function App() {
     const abortController = new AbortController();
     getAllCountries(region, name);
     return () => abortController.abort();
-  }, [region, name]);
+  }, [region, debouncedValue]);
 
   return (
-    <main>
-      <Navbar />
-      <SearchAndFilter setRegion={setRegion} name={name} setName={setName} />
-      {isLoading && !error && (
-        <div className="container" style={{ textAlign: "center" }}>
-          Loading...
-        </div>
-      )}
-      {!isLoading && !error && <Card data={data} />}
-    </main>
+    <CountryContext.Provider value={data}>
+      <main>
+        <SearchAndFilter
+          setRegion={setRegion}
+          name={name}
+          setName={setName}
+          setError={setError}
+        />
+        {isLoading && !error && (
+          <div className="container" style={{ textAlign: "center" }}>
+            Loading...
+          </div>
+        )}
+        {!isLoading && !error && <Card data={data} />}
+      </main>
+    </CountryContext.Provider>
+  );
+}
+
+function App() {
+  const [data, setData] = useState<Countries[]>([]);
+
+  return (
+    <CountryContext.Provider value={data}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Navbar />}>
+            <Route index element={<MainApp setData={setData} />} />
+            <Route path=":countryName" element={<DetailedPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </CountryContext.Provider>
   );
 }
 
