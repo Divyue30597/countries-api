@@ -22,4 +22,7 @@
 
 .card-body-header {
   padding-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

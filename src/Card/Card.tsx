@@ -1,4 +1,5 @@
 import "./card.css";
+import infoCircle from "../assets/info-circle.svg";
 
 export function Card({ data }: any) {
   return (
@@ -20,6 +21,11 @@ export function Card({ data }: any) {
             <div className="card-body">
               <div className="card-body-header">
                 <h1>{country.name.common}</h1>
+                <p>
+                  <a href="">
+                    <img src={infoCircle} alt="Click for more info" />
+                  </a>
+                </p>
               </div>
               <div className="card-main-body">
                 <p>
