@@ -26,43 +26,41 @@ function MainApp({
   const debouncedValue = useDebounce(name, 1000);
 
   async function getAllCountries(region: string, name: string) {
-    await axios
-      .get(
-        `${
-          region && name === ""
-            ? `https://restcountries.com/v3.1/${region}?fields=region,name,population,borders,capital,subregion,tld,currencies,languages,flags`
-            : `https://restcountries.com/v3.1/name/${name}?fields=region,name,population,borders,capital,subregion,tld,currencies,languaregionges,flags`
-        }`
-      )
-      .then((response) => {
-        setData(response.data);
-        localStorage.setItem("data", JSON.stringify(response.data));
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
+    if (localStorage.getItem(region) && name === "") {
+      let newLocalStorageData = localStorage.getItem(region);
+      if (newLocalStorageData) {
+        let data = JSON.parse(newLocalStorageData);
+        setData(data);
         setIsLoading(false);
-      });
-
-    return data;
+      }
+    } else {
+      await axios
+        .get(
+          `${
+            region && name === ""
+              ? `https://restcountries.com/v3.1/${region}?fields=region,name,population,borders,capital,subregion,tld,currencies,languages,flags`
+              : `https://restcountries.com/v3.1/name/${name}?fields=region,name,population,borders,capital,subregion,tld,currencies,languages,flags`
+          }`
+        )
+        .then((response) => {
+          setData(response.data);
+          if (name === "") {
+            localStorage.setItem(region, JSON.stringify(response.data));
+          }
+        })
+        .catch((error) => {
+          setError(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }
 
   useEffect(() => {
     setIsLoading(true);
     const abortController = new AbortController();
-    let newData;
-    if (localStorage.getItem("data")) {
-      let newLocalStorageData = localStorage.getItem("data");
-      if (newLocalStorageData) {
-        newData = JSON.parse(newLocalStorageData);
-        setData(newData);
-        setIsLoading(false);
-      }
-    } else {
-      getAllCountries(region, name);
-    }
-
+    getAllCountries(region, name);
     return () => abortController.abort();
   }, [region, debouncedValue]);
 
