@@ -1,21 +1,33 @@
 import { useParams } from "react-router-dom";
 import { Countries } from "../types/types";
-import { useContext, useEffect, useMemo } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CountryContext } from "../App";
 
 export function DetailedPage() {
   const { countryName } = useParams();
   const data = useContext(CountryContext);
-  
-  let country: Countries[] = useMemo(() => {
-    return data.filter(
-      (itrCountry) =>
-        countryName ===
-        itrCountry.name.common.toLowerCase().split(" ").join("-")
-    );
-  }, [countryName]);
+  const [country, setCountry] = useState<Countries[]>();
+
   useEffect(() => {
-    localStorage.setItem("arrCountry", JSON.stringify(country[0]));
+    const localStorageData = localStorage.getItem("data");
+    if (localStorageData) {
+      const localData = JSON.parse(localStorageData);
+      setCountry(
+        localData.filter(
+          (itrCountry: Countries) =>
+            countryName ===
+            itrCountry.name.common.toLowerCase().split(" ").join("-")
+        )
+      );
+    } else {
+      setCountry(
+        data.filter(
+          (itrCountry) =>
+            countryName ===
+            itrCountry.name.common.toLowerCase().split(" ").join("-")
+        )
+      );
+    }
   }, []);
 
   return (

@@ -36,6 +36,7 @@ function MainApp({
       )
       .then((response) => {
         setData(response.data);
+        localStorage.setItem("data", JSON.stringify(response.data));
       })
       .catch((error) => {
         setError(error);
@@ -50,7 +51,18 @@ function MainApp({
   useEffect(() => {
     setIsLoading(true);
     const abortController = new AbortController();
-    getAllCountries(region, name);
+    let newData;
+    if (localStorage.getItem("data")) {
+      let newLocalStorageData = localStorage.getItem("data");
+      if (newLocalStorageData) {
+        newData = JSON.parse(newLocalStorageData);
+        setData(newData);
+        setIsLoading(false);
+      }
+    } else {
+      getAllCountries(region, name);
+    }
+
     return () => abortController.abort();
   }, [region, debouncedValue]);
 

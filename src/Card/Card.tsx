@@ -1,5 +1,4 @@
 import "./card.css";
-import infoCircle from "../assets/info-circle.svg";
 import { Link } from "react-router-dom";
 
 export function Card({ data }: any) {
@@ -29,7 +28,7 @@ export function Card({ data }: any) {
                       .split(" ")
                       .join("-")}`}
                   >
-                    <img src={infoCircle} alt="Click for more info" />
+                    Know More
                   </Link>
                 </p>
               </div>
