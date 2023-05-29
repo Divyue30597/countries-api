@@ -7,15 +7,53 @@
   font-family: "Nunito Sans", sans-serif;
 }
 
-body {
-  --dark-Blue: hsl(209, 23%, 22%);
-  --very-dark-blue-dark-mode-bg: hsl(207, 26%, 17%);
-  --very-dark-blue-light-mode-text: hsl(200, 15%, 8%);
-  --dark-gray-light-mode-input: hsl(0, 0%, 52%);
-  --very-light-gray-light-mode-bg: hsl(0, 0%, 98%);
-  --white-dark-mode-text: hsl(0, 0%, 100%);
+:root {
+  /* light theme */
+  --background-color-light: hsl(0, 0%, 98%);
+  --heading-light: hsl(200, 15%, 8%);
+  --paragragh-light: hsl(209, 23%, 22%);
+  --anchor-light: hsl(207, 26%, 17%);
+  --input-light: hsl(0, 0%, 100%);
+  --select-light: hsl(0, 0%, 100%);
+  --navbar-light: hsl(0, 0%, 100%);
+
+  /* dark theme */
+  --background-color-dark: hsl(207, 26%, 17%);
+  --heading-dark: hsl(0, 0%, 100%);
+  --paragraph-dark: hsl(0, 0%, 100%);
+  --anchor-dark: hsl(0, 0%, 100%);
+  --navbar-dark: hsl(209, 23%, 22%);
+  --input-dark: hsl(209, 23%, 22%);
+  --select-dark: hsl(209, 23%, 22%);
+
+  --anchor-hover: hsl(0, 0%, 52%);
+
   --font-size: 14px;
   --font-size-detailed-page: 16px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: var(--background-color-light);
+    --heading: var(--heading-light);
+    --paragraph: var(--paragragh-light);
+    --anchor-color: var(--anchor-light);
+    --select: var(--select-light);
+    --navbar: var(--navbar-light);
+    --input: var(--input-light);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: var(--background-color-dark);
+    --heading: var(--heading-dark);
+    --paragraph: var(--paragraph-dark);
+    --anchor-color: var(--anchor-dark);
+    --select: var(--select-dark);
+    --navbar: var(--navbar-dark);
+    --input: var(--input-dark);
+  }
 }
 
 #root {
@@ -23,81 +61,73 @@ body {
   margin: auto;
 }
 
-@media (prefers-color-scheme: light) {
-  body {
-    background-color: var(--very-light-gray-light-mode-bg);
+body {
+  background-color: var(--background-color);
+}
+
+p {
+  color: var(--paragraph);
+}
+
+h1,
+h2 {
+  color: var(--heading);
+}
+
+.anchor-button,
+a {
+  color: var(--anchor-color);
+  text-decoration: underline wavy 2px;
+}
+
+.anchor-button:hover,
+a:hover {
+  color: var(--anchor-hover);
+  transition: 400ms;
+}
+
+.anchor-button {
+  text-decoration: none;
+}
+
+#filter-by-region {
+  background-color: var(--select);
+  color: var(--heading);
+}
+
+.navbar {
+  background-color: var(--navbar);
+}
+
+input[type="text"] {
+  background-color: var(--input);
+  color: var(--heading);
+}
+
+[color-scheme="dark"] {
+  --background-color: var(--background-color-dark);
+  --heading: var(--heading-dark);
+  --paragraph: var(--paragraph-dark);
+  --anchor-color: var(--anchor-dark);
+  --select: var(--select-dark);
+  --navbar: var(--navbar-dark);
+  --input: var(--input-dark);
+
+  [type="text"] {
+    background-image: url(./assets/search-dark.svg);
   }
 
-  h1,
-  h2 {
-    color: var(--very-dark-blue-light-mode-text);
-  }
-
-  p {
-    color: var(--dark-gray-light-mode-input);
-  }
-
-  a {
-    color: var(--very-dark-blue-dark-mode-bg);
-    text-decoration: underline wavy 2px;
-  }
-
-  a:hover {
-    color: var(--dark-gray-light-mode-input);
-    transition: 400ms;
+  .navbar ul li picture a img {
+    filter: invert(100%);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: var(--very-dark-blue-dark-mode-bg);
-  }
-
-  h1,
-  h2 {
-    color: var(--white-dark-mode-text);
-  }
-
-  p {
-    color: var(--white-dark-mode-text);
-  }
-
-  .anchor-button,
-  a {
-    color: var(--white-dark-mode-text);
-    text-decoration: underline wavy 2px;
-  }
-
-  .anchor-button:hover,
-  a:hover {
-    color: var(--dark-gray-light-mode-input);
-    transition: 400ms;
-  }
-
-  .navbar {
-    background-color: var(--dark-Blue);
-  }
-
-  .navbar li {
-    color: #fff;
-  }
-
-  .navbar li img {
-    filter: invert(100%);
-  }
-
-  input[type="text"] {
-    background-image: url(./assets/search-dark.svg);
-    background-color: var(--dark-Blue);
-    color: #fff;
-  }
-
-  input[type="text"]::placeholder {
-    color: #fff;
-  }
-
-  select {
-    background-color: var(--dark-Blue) !important;
-    color: #fff;
-  }
+[color-scheme="light"] {
+  --background-color: var(--background-color-light);
+  --heading: var(--heading-light);
+  --paragraph: var(--paragragh-light);
+  --anchor-color: var(--anchor-light);
+  --select: var(--select-light);
+  --navbar: var(--navbar-light);
+  --input: var(--input-light);
 }

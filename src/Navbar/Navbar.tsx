@@ -1,12 +1,24 @@
 import { Outlet } from "react-router-dom";
 import moonIcon from "../assets/moon.svg";
 import "./navbar.css";
+import { useEffect, useState } from "react";
 
 export function Navbar() {
-  const mediaThemePreset = window.matchMedia(
-    "(prefers-color-scheme: dark)"
-  ).matches;
-  console.log(mediaThemePreset);
+  const root = document.querySelector(":root");
+  const [light, setLight] = useState(
+    window.matchMedia("(prefers-color-scheme: light)").matches
+  );
+
+  function toggleTheme() {
+    root?.setAttribute("color-scheme", `${light ? "dark" : "light"}`);
+    setLight(!light);
+  }
+
+  useEffect(() => {
+    if (light) {
+      root?.setAttribute("color-scheme", "light");
+    }
+  }, []);
 
   return (
     <>
@@ -18,7 +30,14 @@ export function Navbar() {
             </li>
             <li>
               <picture>
-                <img src={moonIcon} alt="Moon icon" /> Dark Mode
+                <a onClick={toggleTheme} style={{ textDecoration: "none" }}>
+                  <img
+                    src={moonIcon}
+                    alt="Moon icon"
+                    
+                  />{" "}
+                  {light ? "Dark" : "Light"} Mode
+                </a>
               </picture>
             </li>
           </ul>
