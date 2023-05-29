@@ -1,0 +1,57 @@
+.anchor-button {
+  padding: 8px 24px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 8px;
+  color: black;
+}
+
+.detailed-country {
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 128px;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.country-img picture img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0px 0px 32px 4px rgba(0, 0, 0, 0.3);
+}
+
+.country-details h2 {
+  font-size: 42px;
+  margin-bottom: 36px;
+}
+
+.details {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.details-left,
+.details-right {
+  line-height: 1.6;
+}
+
+.details-left {
+  margin-right: 128px;
+}
+
+.details-footer {
+  margin-top: 64px;
+}
+
+.details-footer p,
+.details-footer span {
+  display: inline;
+}
+
+.country-border {
+  padding: 6px 24px;
+  border: 1px solid var(--dark-gray-light-mode-input);
+  border-radius: 4px;
+  margin-right: 8px;
+}

@@ -8,13 +8,18 @@ export interface Countries {
   subregion: string;
   borders: any[];
   population: number;
+  languages: Language;
+}
+
+export interface Language {
+  [key: string]: string;
 }
 
 export interface Currencies {
-  USD: Usd;
+  [key: string]: Currency;
 }
 
-export interface Usd {
+export interface Currency {
   name: string;
   symbol: string;
 }
@@ -32,10 +37,10 @@ export interface Name {
 }
 
 export interface NativeName {
-  eng: Eng;
+  [key: string]: natName;
 }
 
-export interface Eng {
+export interface natName {
   official: string;
   common: string;
 }
