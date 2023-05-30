@@ -80,6 +80,16 @@ function MainApp({
         )}
         {!isLoading && !error && <Card data={data} />}
       </main>
+      <footer style={{ textAlign: "center", margin: "24px 0" }}>
+        This is a part of{" "}
+        <a
+          href="https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca"
+          target="_blank"
+        >
+          frontend mentor
+        </a>{" "}
+        challenge.
+      </footer>
     </CountryContext.Provider>
   );
 }

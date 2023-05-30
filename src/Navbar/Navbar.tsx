@@ -30,13 +30,11 @@ export function Navbar() {
             </li>
             <li>
               <picture>
-                <a onClick={toggleTheme} style={{ textDecoration: "none" }}>
-                  <img
-                    src={moonIcon}
-                    alt="Moon icon"
-                    
-                  />{" "}
-                  {light ? "Dark" : "Light"} Mode
+                <a
+                  onClick={toggleTheme}
+                  style={{ textDecoration: "none", transition: "1s" }}
+                >
+                  {light ? "🌙 Dark" : "🔆 Light"} Mode
                 </a>
               </picture>
             </li>

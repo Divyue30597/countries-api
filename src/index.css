@@ -32,7 +32,7 @@
   --font-size-detailed-page: 16px;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     --background-color: var(--background-color-light);
     --heading: var(--heading-light);
@@ -54,7 +54,7 @@
     --navbar: var(--navbar-dark);
     --input: var(--input-dark);
   }
-}
+} */
 
 #root {
   /* max-width: 1400px; */
@@ -102,6 +102,10 @@ a:hover {
 input[type="text"] {
   background-color: var(--input);
   color: var(--heading);
+}
+
+.country-border {
+  color: var(--paragraph);
 }
 
 [color-scheme="dark"] {

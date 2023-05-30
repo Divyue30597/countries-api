@@ -50,8 +50,8 @@
 }
 
 .country-border {
-  padding: 6px 24px;
-  border: 1px solid var(--dark-gray-light-mode-input);
+  padding: 4px 8px;
+  border: 1px solid;
   border-radius: 4px;
   margin-right: 8px;
 }

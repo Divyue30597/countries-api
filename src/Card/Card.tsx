@@ -1,10 +1,11 @@
+import { Countries } from "../types/types";
 import "./card.css";
 import { Link } from "react-router-dom";
 
 export function Card({ data }: any) {
   return (
     <section className="cards container">
-      {data?.map((country: any) => {
+      {data?.map((country: Countries) => {
         return (
           <div key={country.name.common} className="card">
             <div className="card-header">
@@ -35,7 +36,7 @@ export function Card({ data }: any) {
               <div className="card-main-body">
                 <p>
                   <strong>Population: </strong>
-                  {country.population}
+                  {country.population.toLocaleString()}
                 </p>
                 <p>
                   <strong>Region: </strong>
