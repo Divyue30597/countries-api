@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import moonIcon from "../assets/moon.svg";
 import "./navbar.css";
 import { useEffect, useState } from "react";
 
