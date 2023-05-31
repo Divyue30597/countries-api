@@ -24,7 +24,7 @@ export function Card({ data }: any) {
                 <h1>{country.name.common}</h1>
                 <p>
                   <Link
-                    to={`/${country.name.common
+                    to={`/countries-api/${country.name.common
                       .toLowerCase()
                       .split(" ")
                       .join("-")}`}

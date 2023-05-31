@@ -101,9 +101,12 @@ function App() {
     <CountryContext.Provider value={data}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navbar />}>
+          <Route path="/countries-api" element={<Navbar />}>
             <Route index element={<MainApp setData={setData} />} />
-            <Route path=":countryName" element={<DetailedPage />} />
+            <Route
+              path="/countries-api/:countryName"
+              element={<DetailedPage />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

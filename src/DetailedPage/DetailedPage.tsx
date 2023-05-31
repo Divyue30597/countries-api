@@ -33,7 +33,7 @@ export function DetailedPage() {
 
   return (
     <div className="container">
-      <Link className="anchor-button" to={"/"}>
+      <Link className="anchor-button" to={"/countries-api"}>
         ← Back
       </Link>
 
